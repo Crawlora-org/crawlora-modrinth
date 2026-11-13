@@ -1,0 +1,1235 @@
+{
+  "platform": "modrinth",
+  "operationCount": 34,
+  "operationIds": [
+    "modrinth-check-project",
+    "modrinth-collection",
+    "modrinth-collections",
+    "modrinth-dependencies",
+    "modrinth-file-projects",
+    "modrinth-file-update",
+    "modrinth-file-version",
+    "modrinth-file-versions",
+    "modrinth-files-update",
+    "modrinth-files-update-individual",
+    "modrinth-files-update-many",
+    "modrinth-forge-updates",
+    "modrinth-license",
+    "modrinth-metadata-link-platforms",
+    "modrinth-metadata-loader-field-values",
+    "modrinth-metadata-loader-fields",
+    "modrinth-metadata-loaders",
+    "modrinth-organization",
+    "modrinth-organization-projects",
+    "modrinth-organizations",
+    "modrinth-project",
+    "modrinth-project-disclosures",
+    "modrinth-project-version",
+    "modrinth-project-versions",
+    "modrinth-projects",
+    "modrinth-random-projects",
+    "modrinth-search",
+    "modrinth-search-v3",
+    "modrinth-search-v3-body",
+    "modrinth-search-v3-options",
+    "modrinth-statistics",
+    "modrinth-tags",
+    "modrinth-version",
+    "modrinth-versions"
+  ],
+  "methods": {
+    "collection": "modrinth-collection",
+    "collections": "modrinth-collections",
+    "metadata_link_platforms": "modrinth-metadata-link-platforms",
+    "metadata_loader_fields": "modrinth-metadata-loader-fields",
+    "metadata_loader_field_values": "modrinth-metadata-loader-field-values",
+    "metadata_loaders": "modrinth-metadata-loaders",
+    "organization": "modrinth-organization",
+    "organization_projects": "modrinth-organization-projects",
+    "organizations": "modrinth-organizations",
+    "project": "modrinth-project",
+    "check_project": "modrinth-check-project",
+    "dependencies": "modrinth-dependencies",
+    "project_disclosures": "modrinth-project-disclosures",
+    "project_versions": "modrinth-project-versions",
+    "project_version": "modrinth-project-version",
+    "projects": "modrinth-projects",
+    "random_projects": "modrinth-random-projects",
+    "search": "modrinth-search",
+    "statistics": "modrinth-statistics",
+    "license": "modrinth-license",
+    "tags": "modrinth-tags",
+    "forge_updates": "modrinth-forge-updates",
+    "search_v3": "modrinth-search-v3",
+    "search_v3_body": "modrinth-search-v3-body",
+    "search_v3_options": "modrinth-search-v3-options",
+    "version": "modrinth-version",
+    "file_projects": "modrinth-file-projects",
+    "file_version": "modrinth-file-version",
+    "file_update": "modrinth-file-update",
+    "file_versions": "modrinth-file-versions",
+    "files_update": "modrinth-files-update",
+    "files_update_individual": "modrinth-files-update-individual",
+    "files_update_many": "modrinth-files-update-many",
+    "versions": "modrinth-versions"
+  },
+  "operations": {
+    "modrinth-collection": {
+      "id": "modrinth-collection",
+      "method": "GET",
+      "path": "/modrinth/collection/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Base62 collection ID from a public collection URL",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-collections": {
+      "id": "modrinth-collections",
+      "method": "GET",
+      "path": "/modrinth/collections",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "ids",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native JSON array of base62 collection IDs; [] is valid",
+          "in": "query",
+          "name": "ids",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-metadata-link-platforms": {
+      "id": "modrinth-metadata-link-platforms",
+      "method": "GET",
+      "path": "/modrinth/metadata/link-platforms",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-metadata-loader-fields": {
+      "id": "modrinth-metadata-loader-fields",
+      "method": "GET",
+      "path": "/modrinth/metadata/loader-fields",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-metadata-loader-field-values": {
+      "id": "modrinth-metadata-loader-field-values",
+      "method": "GET",
+      "path": "/modrinth/metadata/loader-fields/{field}",
+      "pathParams": [
+        "field"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Source field name from loader-field discovery",
+          "in": "path",
+          "name": "field",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-metadata-loaders": {
+      "id": "modrinth-metadata-loaders",
+      "method": "GET",
+      "path": "/modrinth/metadata/loaders",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-organization": {
+      "id": "modrinth-organization",
+      "method": "GET",
+      "path": "/modrinth/organization/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Organization ID or slug from a public organization URL or project metadata",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-organization-projects": {
+      "id": "modrinth-organization-projects",
+      "method": "GET",
+      "path": "/modrinth/organization/{id}/projects",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Organization ID or slug from a public organization URL or project metadata",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-organizations": {
+      "id": "modrinth-organizations",
+      "method": "GET",
+      "path": "/modrinth/organizations",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "ids",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native JSON array of organization IDs or slugs; [] is valid",
+          "in": "query",
+          "name": "ids",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-project": {
+      "id": "modrinth-project",
+      "method": "GET",
+      "path": "/modrinth/project/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native id",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-check-project": {
+      "id": "modrinth-check-project",
+      "method": "GET",
+      "path": "/modrinth/project/{id}/check",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native id",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-dependencies": {
+      "id": "modrinth-dependencies",
+      "method": "GET",
+      "path": "/modrinth/project/{id}/dependencies",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native id",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-project-disclosures": {
+      "id": "modrinth-project-disclosures",
+      "method": "GET",
+      "path": "/modrinth/project/{id}/disclosures",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native project ID or canonical slug",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-project-versions": {
+      "id": "modrinth-project-versions",
+      "method": "GET",
+      "path": "/modrinth/project/{id}/version",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [
+        {
+          "name": "loaders",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "game_versions",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "featured",
+          "in": "query",
+          "type": "boolean"
+        },
+        {
+          "name": "include_changelog",
+          "in": "query",
+          "type": "boolean"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native id",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "JSON array of loader names from the loader tag catalog",
+          "in": "query",
+          "name": "loaders",
+          "type": "string"
+        },
+        {
+          "description": "JSON array of game versions from the game_version tag catalog",
+          "in": "query",
+          "name": "game_versions",
+          "type": "string"
+        },
+        {
+          "description": "Native featured selector; false is distinct from omission",
+          "in": "query",
+          "name": "featured",
+          "type": "boolean"
+        },
+        {
+          "default": true,
+          "description": "Include changelog fields",
+          "in": "query",
+          "name": "include_changelog",
+          "type": "boolean"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-project-version": {
+      "id": "modrinth-project-version",
+      "method": "GET",
+      "path": "/modrinth/project/{id}/version/{number}",
+      "pathParams": [
+        "id",
+        "number"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native id",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Native number",
+          "in": "path",
+          "name": "number",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-projects": {
+      "id": "modrinth-projects",
+      "method": "GET",
+      "path": "/modrinth/projects",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "ids",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "JSON-encoded array of native identifiers; absent members are omitted",
+          "in": "query",
+          "name": "ids",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-random-projects": {
+      "id": "modrinth-random-projects",
+      "method": "GET",
+      "path": "/modrinth/projects_random",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "count",
+          "in": "query",
+          "type": "integer",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Number of random projects, 1 to 100",
+          "in": "query",
+          "name": "count",
+          "required": true,
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-search": {
+      "id": "modrinth-search",
+      "method": "GET",
+      "path": "/modrinth/search",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "query",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "facets",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "index",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "relevance",
+            "downloads",
+            "follows",
+            "newest",
+            "updated"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Search text",
+          "in": "query",
+          "name": "query",
+          "type": "string"
+        },
+        {
+          "description": "Native JSON array of OR groups joined by AND; see the full facet reference",
+          "in": "query",
+          "name": "facets",
+          "type": "string"
+        },
+        {
+          "description": "Native search order",
+          "enum": [
+            "relevance",
+            "downloads",
+            "follows",
+            "newest",
+            "updated"
+          ],
+          "in": "query",
+          "name": "index",
+          "type": "string"
+        },
+        {
+          "default": 0,
+          "description": "Native result offset, at least zero",
+          "in": "query",
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "default": 10,
+          "description": "Native result limit, zero to 100",
+          "in": "query",
+          "name": "limit",
+          "type": "integer"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-statistics": {
+      "id": "modrinth-statistics",
+      "method": "GET",
+      "path": "/modrinth/statistics",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-license": {
+      "id": "modrinth-license",
+      "method": "GET",
+      "path": "/modrinth/tag/license/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native id",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-tags": {
+      "id": "modrinth-tags",
+      "method": "GET",
+      "path": "/modrinth/tag/{type}",
+      "pathParams": [
+        "type"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native type",
+          "enum": [
+            "category",
+            "loader",
+            "game_version",
+            "license",
+            "donation_platform",
+            "report_type",
+            "project_type",
+            "side_type"
+          ],
+          "in": "path",
+          "name": "type",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-forge-updates": {
+      "id": "modrinth-forge-updates",
+      "method": "GET",
+      "path": "/modrinth/updates/{id}/forge_updates.json",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [
+        {
+          "name": "neoforge",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "include",
+            "only"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native id",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Native NeoForge selection; omitted retains Forge default",
+          "enum": [
+            "include",
+            "only"
+          ],
+          "in": "query",
+          "name": "neoforge",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-search-v3": {
+      "id": "modrinth-search-v3",
+      "method": "GET",
+      "path": "/modrinth/v3/search",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "query",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "index",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "relevance",
+            "downloads",
+            "follows",
+            "newest",
+            "updated",
+            "date_created",
+            "date_modified",
+            "minecraft_java_server.verified_plays_2w",
+            "minecraft_java_server.ping.data.players_online"
+          ]
+        },
+        {
+          "name": "offset",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "limit",
+          "in": "query",
+          "type": "integer"
+        },
+        {
+          "name": "new_filters",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "facets",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "filters",
+          "in": "query",
+          "type": "string"
+        },
+        {
+          "name": "version",
+          "in": "query",
+          "type": "string"
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native search text",
+          "in": "query",
+          "name": "query",
+          "type": "string"
+        },
+        {
+          "description": "Native v3 order",
+          "enum": [
+            "relevance",
+            "downloads",
+            "follows",
+            "newest",
+            "updated",
+            "date_created",
+            "date_modified",
+            "minecraft_java_server.verified_plays_2w",
+            "minecraft_java_server.ping.data.players_online"
+          ],
+          "in": "query",
+          "name": "index",
+          "type": "string"
+        },
+        {
+          "description": "Native nonnegative offset; default0",
+          "in": "query",
+          "name": "offset",
+          "type": "integer"
+        },
+        {
+          "description": "Native nonnegative limit; default10; source normalizes to1–100",
+          "in": "query",
+          "name": "limit",
+          "type": "integer"
+        },
+        {
+          "description": "Native current filter expression, forwarded unchanged",
+          "in": "query",
+          "name": "new_filters",
+          "type": "string"
+        },
+        {
+          "description": "Legacy JSON array of string arrays using v3 field names",
+          "in": "query",
+          "name": "facets",
+          "type": "string"
+        },
+        {
+          "description": "Legacy filter-expression clause",
+          "in": "query",
+          "name": "filters",
+          "type": "string"
+        },
+        {
+          "description": "Legacy secondary filter-expression clause",
+          "in": "query",
+          "name": "version",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-search-v3-body": {
+      "id": "modrinth-search-v3-body",
+      "method": "POST",
+      "path": "/modrinth/v3/search",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": "body",
+      "bodyRequired": true,
+      "params": [
+        {
+          "description": "Native search body; offset/limit are strings",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/modrinth.SearchV3BodyRequest"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-search-v3-options": {
+      "id": "modrinth-search-v3-options",
+      "method": "GET",
+      "path": "/modrinth/v3/search/options",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-version": {
+      "id": "modrinth-version",
+      "method": "GET",
+      "path": "/modrinth/version/{id}",
+      "pathParams": [
+        "id"
+      ],
+      "queryParams": [],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native id",
+          "in": "path",
+          "name": "id",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-file-projects": {
+      "id": "modrinth-file-projects",
+      "method": "POST",
+      "path": "/modrinth/version_file/project",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": "body",
+      "bodyRequired": true,
+      "params": [
+        {
+          "description": "Native metadata lookup body",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/modrinth.HashesRequest"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-file-version": {
+      "id": "modrinth-file-version",
+      "method": "GET",
+      "path": "/modrinth/version_file/{hash}",
+      "pathParams": [
+        "hash"
+      ],
+      "queryParams": [
+        {
+          "name": "algorithm",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "sha1",
+            "sha512"
+          ]
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "Native hash",
+          "in": "path",
+          "name": "hash",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "File-hash algorithm; omitted uses native auto-detection",
+          "enum": [
+            "sha1",
+            "sha512"
+          ],
+          "in": "query",
+          "name": "algorithm",
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-file-update": {
+      "id": "modrinth-file-update",
+      "method": "POST",
+      "path": "/modrinth/version_file/{hash}/update",
+      "pathParams": [
+        "hash"
+      ],
+      "queryParams": [
+        {
+          "name": "algorithm",
+          "in": "query",
+          "type": "string",
+          "enum": [
+            "sha1",
+            "sha512"
+          ]
+        }
+      ],
+      "bodyParam": "body",
+      "bodyRequired": true,
+      "params": [
+        {
+          "description": "Native hash",
+          "in": "path",
+          "name": "hash",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "File-hash algorithm; omitted uses native auto-detection",
+          "enum": [
+            "sha1",
+            "sha512"
+          ],
+          "in": "query",
+          "name": "algorithm",
+          "type": "string"
+        },
+        {
+          "description": "Native metadata lookup body",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/modrinth.FiltersRequest"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-file-versions": {
+      "id": "modrinth-file-versions",
+      "method": "POST",
+      "path": "/modrinth/version_files",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": "body",
+      "bodyRequired": true,
+      "params": [
+        {
+          "description": "Native metadata lookup body",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/modrinth.HashesRequest"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-files-update": {
+      "id": "modrinth-files-update",
+      "method": "POST",
+      "path": "/modrinth/version_files/update",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": "body",
+      "bodyRequired": true,
+      "params": [
+        {
+          "description": "Native metadata lookup body",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/modrinth.HashUpdatesRequest"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-files-update-individual": {
+      "id": "modrinth-files-update-individual",
+      "method": "POST",
+      "path": "/modrinth/version_files/update_individual",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": "body",
+      "bodyRequired": true,
+      "params": [
+        {
+          "description": "Native metadata lookup body",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/modrinth.IndividualUpdatesRequest"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-files-update-many": {
+      "id": "modrinth-files-update-many",
+      "method": "POST",
+      "path": "/modrinth/version_files/update_many",
+      "pathParams": [],
+      "queryParams": [],
+      "bodyParam": "body",
+      "bodyRequired": true,
+      "params": [
+        {
+          "description": "Native metadata lookup body",
+          "in": "body",
+          "name": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/modrinth.HashUpdatesRequest"
+          }
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    },
+    "modrinth-versions": {
+      "id": "modrinth-versions",
+      "method": "GET",
+      "path": "/modrinth/versions",
+      "pathParams": [],
+      "queryParams": [
+        {
+          "name": "ids",
+          "in": "query",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "bodyParam": null,
+      "bodyRequired": false,
+      "params": [
+        {
+          "description": "JSON-encoded array of native identifiers; absent members are omitted",
+          "in": "query",
+          "name": "ids",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "produces": [
+        "application/json"
+      ],
+      "security": [
+        "ApiKeyAuth"
+      ]
+    }
+  }
+}

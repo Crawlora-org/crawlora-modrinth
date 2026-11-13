@@ -1,0 +1,2227 @@
+{
+  "basePath": "/api/v1",
+  "definitions": {
+    "app.Response": {
+      "description": "The Response struct is used for wrapping the API response with a code, message, and data.",
+      "properties": {
+        "code": {
+          "description": "Code is the HTTP status code or a custom code used to indicate the result of the request\n@example 200",
+          "type": "integer"
+        },
+        "data": {
+          "description": "Data is the response data (can be any object or null)\n@example {\"id\": 1, \"name\": \"John Doe\"}"
+        },
+        "msg": {
+          "description": "Msg is the message that describes the result of the request\n@example \"Request successful\""
+        }
+      },
+      "type": "object"
+    },
+    "modrinth.ArrayResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "items": {},
+          "type": "array"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "modrinth.FiltersRequest": {
+      "properties": {
+        "game_versions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "loaders": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "modrinth.HashFilter": {
+      "properties": {
+        "game_versions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hash": {
+          "type": "string"
+        },
+        "loaders": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "hash"
+      ],
+      "type": "object"
+    },
+    "modrinth.HashUpdatesRequest": {
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "sha1",
+            "sha512"
+          ],
+          "type": "string"
+        },
+        "game_versions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hashes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "loaders": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "hashes"
+      ],
+      "type": "object"
+    },
+    "modrinth.HashesRequest": {
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "sha1",
+            "sha512"
+          ],
+          "type": "string"
+        },
+        "hashes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "hashes"
+      ],
+      "type": "object"
+    },
+    "modrinth.IndividualUpdatesRequest": {
+      "properties": {
+        "algorithm": {
+          "enum": [
+            "sha1",
+            "sha512"
+          ],
+          "type": "string"
+        },
+        "hashes": {
+          "items": {
+            "$ref": "#/definitions/modrinth.HashFilter"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "hashes"
+      ],
+      "type": "object"
+    },
+    "modrinth.ObjectResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "modrinth.SearchV3BodyRequest": {
+      "properties": {
+        "facets": {
+          "type": "string"
+        },
+        "filters": {
+          "type": "string"
+        },
+        "index": {
+          "enum": [
+            "relevance",
+            "downloads",
+            "follows",
+            "newest",
+            "updated",
+            "date_created",
+            "date_modified",
+            "minecraft_java_server.verified_plays_2w",
+            "minecraft_java_server.ping.data.players_online"
+          ],
+          "type": "string"
+        },
+        "limit": {
+          "type": "string"
+        },
+        "new_filters": {
+          "type": "string"
+        },
+        "offset": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "show_metadata": {
+          "type": "boolean"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "modrinth.StringListResponseDoc": {
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "data": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "msg": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "host": "api.crawlora.net",
+  "info": {
+    "contact": {
+      "email": "support@crawlora.net",
+      "name": "API Support",
+      "url": "https://crawlora.net"
+    },
+    "description": "Crawlora is a hosted web-data and SERP API: call documented REST endpoints and get normalized JSON instead of HTML to parse — across search/SERP, maps and local, e-commerce, app stores, social, media and finance. One API key; Crawlora runs the proxy rotation, headless browsers and parsing behind the scenes. Billed pay-on-success: charged only on a successful 2xx response, 1-10 credits per call, with a free tier of 2,000 credits per month and no card. A hosted MCP server (mcp.crawlora.net/mcp) exposes the same catalog as agent tools. Search endpoints accept `q` as a universal alias for whichever search-term parameter they document (`query`, `term`, `keyword`, or Amazon's `k`), so one parameter name works across the whole catalog; an explicitly supplied documented name always wins.",
+    "license": {
+      "name": "Crawlora Terms of Service",
+      "url": "https://crawlora.net/terms"
+    },
+    "termsOfService": "https://crawlora.net/terms",
+    "title": "Crawlora API",
+    "version": "1.2",
+    "x-logo": {
+      "altText": "Crawlora",
+      "backgroundColor": "#FFFFFF",
+      "url": "https://raw.githubusercontent.com/Crawlora-org/crawlora-mcp/main/assets/logo-400x400.png"
+    }
+  },
+  "paths": {
+    "/modrinth/collection/{id}": {
+      "get": {
+        "description": "Reads public collection metadata and its complete native project-ID list. Retains native list order, visibility, timestamps and nullable fields while excluding the owner's account identifier. Does not fetch project details or private collections.",
+        "operationId": "modrinth-collection",
+        "parameters": [
+          {
+            "description": "Base62 collection ID from a public collection URL",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Read a public Modrinth collection",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/collections": {
+      "get": {
+        "description": "Uses the native bulk read for a JSON array of collection IDs. Preserves the returned order, omissions and complete per-collection project-ID lists. Excludes owner account identifiers and private data. An empty array returns an empty array.",
+        "operationId": "modrinth-collections",
+        "parameters": [
+          {
+            "description": "Native JSON array of base62 collection IDs; [] is valid",
+            "in": "query",
+            "name": "ids",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve public Modrinth collections",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/metadata/link-platforms": {
+      "get": {
+        "description": "Returns every native link-platform name and donation classification. This is public reference metadata and does not initiate donations, payments or account actions.",
+        "operationId": "modrinth-metadata-link-platforms",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Modrinth link platforms",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/metadata/loader-fields": {
+      "get": {
+        "description": "Returns every distinct supported field advertised by the native loader catalog, preserving first source occurrence. Names refresh with the loader catalog rather than a hard-coded field list.",
+        "operationId": "modrinth-metadata-loader-fields",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.StringListResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Discover Modrinth loader fields",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/metadata/loader-fields/{field}": {
+      "get": {
+        "description": "Returns all native enumerable values and metadata for a field from loader-field discovery. Null ordering/type/major and explicit false remain distinct; optional upstream metadata filters are not exposed.",
+        "operationId": "modrinth-metadata-loader-field-values",
+        "parameters": [
+          {
+            "description": "Source field name from loader-field discovery",
+            "in": "path",
+            "name": "field",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Modrinth loader-field values",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/metadata/loaders": {
+      "get": {
+        "description": "Returns native v3 loader names, supported games, project types, supported fields and metadata. Use the dedicated loader-field discovery to obtain accepted field names.",
+        "operationId": "modrinth-metadata-loaders",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Modrinth loader capabilities",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/organization/{id}": {
+      "get": {
+        "description": "Reads an organization by its native ID or slug and returns its public name, description and icon metadata. Account, team-member and moderation data are excluded.",
+        "operationId": "modrinth-organization",
+        "parameters": [
+          {
+            "description": "Organization ID or slug from a public organization URL or project metadata",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Read a public Modrinth organization",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/organization/{id}/projects": {
+      "get": {
+        "description": "Returns every anonymously visible project published by the organization in native order, including reviewed game, compatibility and public server metadata. Validates organization identity before accepting the list. Does not add project-type filters, sorting or pagination.",
+        "operationId": "modrinth-organization-projects",
+        "parameters": [
+          {
+            "description": "Organization ID or slug from a public organization URL or project metadata",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Read a public organization's Modrinth projects",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/organizations": {
+      "get": {
+        "description": "Uses the native bulk read for a JSON array of organization IDs or slugs. Preserves native response order and omissions instead of creating entries for unknown IDs. Returns public organization metadata without members or account data. An empty array returns an empty array.",
+        "operationId": "modrinth-organizations",
+        "parameters": [
+          {
+            "description": "Native JSON array of organization IDs or slugs; [] is valid",
+            "in": "query",
+            "name": "ids",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve public Modrinth organizations",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/project/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-project",
+        "parameters": [
+          {
+            "description": "Native id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a Modrinth project",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/project/{id}/check": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-check-project",
+        "parameters": [
+          {
+            "description": "Native id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve a project ID or slug",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/project/{id}/dependencies": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-dependencies",
+        "parameters": [
+          {
+            "description": "Native id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get project dependency metadata",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/project/{id}/disclosures": {
+      "get": {
+        "description": "Returns all current public declarations, their type-specific fields and timestamps. Empty declarations are valid. Public AI/system/telemetry/derivative/paid-feature/archive metadata is preserved; moderation, authorship, lock and deletion controls are omitted. No credentials, private/member view or write operation is used.",
+        "operationId": "modrinth-project-disclosures",
+        "parameters": [
+          {
+            "description": "Native project ID or canonical slug",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Modrinth public project disclosures",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/project/{id}/version": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-project-versions",
+        "parameters": [
+          {
+            "description": "Native id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "JSON array of loader names from the loader tag catalog",
+            "in": "query",
+            "name": "loaders",
+            "type": "string"
+          },
+          {
+            "description": "JSON array of game versions from the game_version tag catalog",
+            "in": "query",
+            "name": "game_versions",
+            "type": "string"
+          },
+          {
+            "description": "Native featured selector; false is distinct from omission",
+            "in": "query",
+            "name": "featured",
+            "type": "boolean"
+          },
+          {
+            "default": true,
+            "description": "Include changelog fields",
+            "in": "query",
+            "name": "include_changelog",
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List project versions",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/project/{id}/version/{number}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-project-version",
+        "parameters": [
+          {
+            "description": "Native id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Native number",
+            "in": "path",
+            "name": "number",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a project version by number or ID",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/projects": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-projects",
+        "parameters": [
+          {
+            "description": "JSON-encoded array of native identifiers; absent members are omitted",
+            "in": "query",
+            "name": "ids",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get native multiple-project metadata",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/projects_random": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-random-projects",
+        "parameters": [
+          {
+            "description": "Number of random projects, 1 to 100",
+            "in": "query",
+            "name": "count",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get native random projects",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/search": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-search",
+        "parameters": [
+          {
+            "description": "Search text",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          },
+          {
+            "description": "Native JSON array of OR groups joined by AND; see the full facet reference",
+            "in": "query",
+            "name": "facets",
+            "type": "string"
+          },
+          {
+            "description": "Native search order",
+            "enum": [
+              "relevance",
+              "downloads",
+              "follows",
+              "newest",
+              "updated"
+            ],
+            "in": "query",
+            "name": "index",
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "Native result offset, at least zero",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "default": 10,
+            "description": "Native result limit, zero to 100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Modrinth projects",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/statistics": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-statistics",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get Modrinth instance statistics",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/tag/license/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-license",
+        "parameters": [
+          {
+            "description": "Native id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get source license title and text",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/tag/{type}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-tags",
+        "parameters": [
+          {
+            "description": "Native type",
+            "enum": [
+              "category",
+              "loader",
+              "game_version",
+              "license",
+              "donation_platform",
+              "report_type",
+              "project_type",
+              "side_type"
+            ],
+            "in": "path",
+            "name": "type",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Discover Modrinth catalog values",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/updates/{id}/forge_updates.json": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-forge-updates",
+        "parameters": [
+          {
+            "description": "Native id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Native NeoForge selection; omitted retains Forge default",
+            "enum": [
+              "include",
+              "only"
+            ],
+            "in": "query",
+            "name": "neoforge",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get native Forge update metadata",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/v3/search": {
+      "get": {
+        "description": "Returns native v3 name/summary/project_types/version-aware hits, page, hits_per_page and total_hits. Uses native offset/limit and filter expressions unchanged. Source limit0 resolves to1, values above100 cap at100; page is one-based. New_filters takes precedence over legacy filters/version; version is a legacy expression clause, not a bare game-version value. Use search options and native metadata catalogs for values.",
+        "operationId": "modrinth-search-v3",
+        "parameters": [
+          {
+            "description": "Native search text",
+            "in": "query",
+            "name": "query",
+            "type": "string"
+          },
+          {
+            "description": "Native v3 order",
+            "enum": [
+              "relevance",
+              "downloads",
+              "follows",
+              "newest",
+              "updated",
+              "date_created",
+              "date_modified",
+              "minecraft_java_server.verified_plays_2w",
+              "minecraft_java_server.ping.data.players_online"
+            ],
+            "in": "query",
+            "name": "index",
+            "type": "string"
+          },
+          {
+            "description": "Native nonnegative offset; default0",
+            "in": "query",
+            "name": "offset",
+            "type": "integer"
+          },
+          {
+            "description": "Native nonnegative limit; default10; source normalizes to1–100",
+            "in": "query",
+            "name": "limit",
+            "type": "integer"
+          },
+          {
+            "description": "Native current filter expression, forwarded unchanged",
+            "in": "query",
+            "name": "new_filters",
+            "type": "string"
+          },
+          {
+            "description": "Legacy JSON array of string arrays using v3 field names",
+            "in": "query",
+            "name": "facets",
+            "type": "string"
+          },
+          {
+            "description": "Legacy filter-expression clause",
+            "in": "query",
+            "name": "filters",
+            "type": "string"
+          },
+          {
+            "description": "Legacy secondary filter-expression clause",
+            "in": "query",
+            "name": "version",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search current Modrinth projects and servers",
+        "tags": [
+          "modrinth"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Performs the upstream native POST search read. Offset and limit are decimal strings in this body; show_metadata preserves explicit false and optionally returns native per-hit score/sort metadata. No projects or account state are modified. Other fields and filter precedence match GET search.",
+        "operationId": "modrinth-search-v3-body",
+        "parameters": [
+          {
+            "description": "Native search body; offset/limit are strings",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/modrinth.SearchV3BodyRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Search Modrinth using the native v3 JSON body",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/v3/search/options": {
+      "get": {
+        "description": "Returns all supported indexes, published server UI region/language choices, exact native content/status filter expressions, disclosure search flags and catalog paths for dynamic project types, categories, loaders, versions, environments and licenses. These reference choices do not restrict the native expression grammar.",
+        "operationId": "modrinth-search-v3-options",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Discover Modrinth v3 search options",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/version/{id}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-version",
+        "parameters": [
+          {
+            "description": "Native id",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get a version by ID",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/version_file/project": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-file-projects",
+        "parameters": [
+          {
+            "description": "Native metadata lookup body",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/modrinth.HashesRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve file hashes to projects",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/version_file/{hash}": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-file-version",
+        "parameters": [
+          {
+            "description": "Native hash",
+            "in": "path",
+            "name": "hash",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "File-hash algorithm; omitted uses native auto-detection",
+            "enum": [
+              "sha1",
+              "sha512"
+            ],
+            "in": "query",
+            "name": "algorithm",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve a version by file hash",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/version_file/{hash}/update": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-file-update",
+        "parameters": [
+          {
+            "description": "Native hash",
+            "in": "path",
+            "name": "hash",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "File-hash algorithm; omitted uses native auto-detection",
+            "enum": [
+              "sha1",
+              "sha512"
+            ],
+            "in": "query",
+            "name": "algorithm",
+            "type": "string"
+          },
+          {
+            "description": "Native metadata lookup body",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/modrinth.FiltersRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve a compatible update for a file",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/version_files": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-file-versions",
+        "parameters": [
+          {
+            "description": "Native metadata lookup body",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/modrinth.HashesRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve file hashes to versions",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/version_files/update": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-files-update",
+        "parameters": [
+          {
+            "description": "Native metadata lookup body",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/modrinth.HashUpdatesRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve compatible updates for files",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/version_files/update_individual": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-files-update-individual",
+        "parameters": [
+          {
+            "description": "Native metadata lookup body",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/modrinth.IndividualUpdatesRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Resolve updates with per-file filters",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/version_files/update_many": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-files-update-many",
+        "parameters": [
+          {
+            "description": "Native metadata lookup body",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/modrinth.HashUpdatesRequest"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ObjectResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "List compatible update versions for files",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    },
+    "/modrinth/versions": {
+      "get": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Returns the native public Modrinth metadata for this resource. See the endpoint reference for exact request and response behavior.",
+        "operationId": "modrinth-versions",
+        "parameters": [
+          {
+            "description": "JSON-encoded array of native identifiers; absent members are omitted",
+            "in": "query",
+            "name": "ids",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/modrinth.ArrayResponseDoc"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "schema": {
+              "$ref": "#/definitions/app.Response"
+            }
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ],
+        "summary": "Get native multiple-version metadata",
+        "tags": [
+          "modrinth"
+        ]
+      }
+    }
+  },
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "in": "header",
+      "name": "x-api-key",
+      "type": "apiKey"
+    }
+  },
+  "swagger": "2.0",
+  "tags": [
+    {
+      "name": "modrinth"
+    }
+  ]
+}
